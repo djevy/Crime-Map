@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  /* display: flex; */
+}
+#mapstyle {
+  position: absolute;
+  width: 100vw;
+  height: calc(95%);
 }
 
 .App-logo {
@@ -36,3 +42,5 @@
     transform: rotate(360deg);
   }
 }
+
+#map { height: 180px; }
