@@ -1,46 +1,46 @@
 .App {
   text-align: center;
   /* display: flex; */
+  margin: 0px;
+  padding: 0px;
+  max-width: 100vw;
+}
+h1{
+  margin: 0;
+}
+
+#pageTitle{
+  height: 50px;
+  background-color: #1b4080;
+  color: white;
+  display: flex;
+  justify-content: center;
+    align-items: center;
+}
+#mapContainer {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  height: calc(100vh - 50px);
+}
+/* Table */
+#table {
+  height: calc(100vh - 60px);
+  border: #1b4080 solid 5px;
+  background-color: #74a6fd;
+}
+
+/* Map */
+#mymap {
+  grid-column: 1;
+  display: flex;
+  grid-column: 2;
+  margin: auto;
+  width: 100%;
+  height: calc(100vh - 50px);
 }
 #mapstyle {
-  position: absolute;
-  width: 100vw;
-  height: calc(95%);
+  /* display: flex; */
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-#map { height: 180px; }

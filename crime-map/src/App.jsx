@@ -1,22 +1,20 @@
+import { useState } from "react";
 import "./App.css";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Leaflet } from "./Leaflet";
+import { Table } from "./Table";
 
 function App() {
+  const [townData, setTownData] = useState();
+
   return (
     <div className="App">
-      <h1>Crime mapper</h1>
-      {/* <div id="map"></div> */}
-      <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false} id="mapstyle">
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
-      </MapContainer>
+      <div id="pageTitle">
+        <h1>CRIME MAPPER</h1>
+      </div>
+      <div id="mapContainer">
+        <Table townData={townData} setTownData={setTownData}></Table>
+        <Leaflet></Leaflet>
+      </div>
     </div>
   );
 }
