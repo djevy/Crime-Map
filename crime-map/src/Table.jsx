@@ -1,7 +1,14 @@
 import React from "react";
 import DATA from "./Major Cities/gb.json";
 
-export const Table = ({ townData, setTownData }) => {
+export const Table = ({
+  townData,
+  setTownData,
+  Date,
+  setDate,
+  findCrimes,
+  CrimeData,
+}) => {
   const handleChange = (value) => {
     const index = value.selectedIndex;
     const el = value.childNodes[index];
@@ -19,25 +26,21 @@ export const Table = ({ townData, setTownData }) => {
       lng: lng,
       city: city,
     });
-    // DATA.filter((val) => val.city === Location?.city).map((val, index) => {
-    //     setTownData({
-    //         lat: val.lat,
-    //         lng: val.lng,
-    //         population: val.population,
-    //         city: val.city,
-    //       });
-    //   })
+
+    // findCrimes(Date, lat, lng);
+    console.log("CrimeData: ", CrimeData);
   };
 
   return (
     <div id="table">
-      Info
+      <label htmlFor="towns">Location: </label>
       <select
+        className={"dropdown"}
         name="towns"
         id="towns"
         onChange={(e) => {
           handleChange(e.target);
-          console.log(e.target);
+          // console.log(e.target);
         }}
       >
         <option selected disabled>
@@ -58,11 +61,41 @@ export const Table = ({ townData, setTownData }) => {
           );
         })}
       </select>
-      <p>{townData?.city}</p>
+
+      <label htmlFor="date">Date: </label>
+      <input
+        className="dropdown"
+        type="month"
+        id="date"
+        name="date"
+        onChange={(e) => {
+          console.log(e.target.value);
+          setDate(e.target.value);
+        }}
+      />
+
+      <button onClick={() => findCrimes(Date, townData?.lat, townData?.lng)}>
+        Go
+      </button>
+
+      {/* <p>{townData?.city}</p>
       <p>{townData?.id}</p>
       <p>{townData?.population}</p>
       <p>{townData?.lat}</p>
-      <p>{townData?.lng}</p>
+      <p>{townData?.lng}</p> */}
+
+      {CrimeData?.map((val, index) => {
+        if (val.length === 0) {
+          return <p>No crime reported</p>;
+        } else {
+          return (
+            <div id={index} key={index}>
+              <p>Crime category: {val.category}</p>
+              <p>Location: {val.location.street.name}</p>
+            </div>
+          );
+        }
+      })}
     </div>
   );
 };

@@ -20,9 +20,11 @@ request.interceptors.request.use(
 )
 
 
-export const findCrimesAtALocation = async (lng, lat) => {
+export const findCrimesAtALocation = async (date, lat, lng) => {
     try {
-        const url = `/crimes-at-location?date=2017-02&lat=${lng}&lng=${lat}`
+        const url = `/crimes-at-location?date=${date}&lat=${lat}&lng=${lng}`
+        
+        // const url = `/crimes-street/all-crime?lat=52.629729&lng=-1.131592&date=2020-01`
         const response = await request.get(url)
 
         return response?.data
