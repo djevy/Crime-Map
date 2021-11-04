@@ -7,7 +7,9 @@ export const Table = ({
   Date,
   setDate,
   findCrimes,
-  CrimeData,
+  LocationCrimeData,
+  findStreetCrimes,
+  StreetCrimeData,
 }) => {
   const handleChange = (value) => {
     const index = value.selectedIndex;
@@ -28,7 +30,8 @@ export const Table = ({
     });
 
     // findCrimes(Date, lat, lng);
-    console.log("CrimeData: ", CrimeData);
+    // findStreetCrimes(Date, lat, lng)
+    console.log("LocationCrimeData: ", LocationCrimeData);
   };
 
   return (
@@ -74,7 +77,8 @@ export const Table = ({
         }}
       />
 
-      <button onClick={() => findCrimes(Date, townData?.lat, townData?.lng)}>
+      {/* <button onClick={() => findCrimes(Date, townData?.lat, townData?.lng)}> */}
+      <button onClick={() => findStreetCrimes(Date, townData?.lat, townData?.lng)}>
         Go
       </button>
 
@@ -84,7 +88,7 @@ export const Table = ({
       <p>{townData?.lat}</p>
       <p>{townData?.lng}</p> */}
 
-      {CrimeData?.map((val, index) => {
+      {LocationCrimeData?.map((val, index) => {
         if (val.length === 0) {
           return <p>No crime reported</p>;
         } else {
