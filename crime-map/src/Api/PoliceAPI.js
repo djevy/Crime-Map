@@ -52,3 +52,19 @@ export const findStreetLevelCrime = async (date, lat, lng) => {
         throw new Error(error)
     }
 }
+
+export const findCrimeCategories = async (date) => {
+    try {
+        const url = `/crime-categories?date=${date}`
+
+        const response = await request.get(url)
+
+        return response?.data
+    } catch (err) {
+        if (err?.response?.data?.data?.message) {
+            throw new Error(err.response.data.data.message.join('\n\n'))
+        }
+        const error = err?.response?.data?.message || err?.message
+        throw new Error(error)
+    }
+}

@@ -10,6 +10,12 @@ export const Table = ({
   LocationCrimeData,
   findStreetCrimes,
   StreetCrimeData,
+  // FilteredStreetCrimeData,
+  CrimeTypeList,
+  CrimeType,
+  setCrimeType,
+  findCategories,
+  
 }) => {
   const handleChange = (value) => {
     const index = value.selectedIndex;
@@ -31,7 +37,10 @@ export const Table = ({
 
     // findCrimes(Date, lat, lng);
     // findStreetCrimes(Date, lat, lng)
+    findCategories(Date);
+    console.log(CrimeType);
     console.log("LocationCrimeData: ", LocationCrimeData);
+
   };
 
   return (
@@ -77,8 +86,38 @@ export const Table = ({
         }}
       />
 
+      <label htmlFor="crimeType">Crime Type: </label>
+      <select
+        className={"dropdown"}
+        name="crimeType"
+        id="crimeType"
+        onChange={(e) => {
+          const index = e.target.selectedIndex;
+          const el = e.target.childNodes[index];
+          const id= el.getAttribute("id");
+          // console.log(e.target);
+          setCrimeType(id)
+        }}
+      >
+        <option selected disabled>
+          Select a crime type
+        </option>
+        {CrimeTypeList?.map((val, index) => {
+          return (
+            <option
+              id={val.url}
+              key={index}
+            >
+              {val.name}
+            </option>
+          );
+        })}
+      </select>
+
       {/* <button onClick={() => findCrimes(Date, townData?.lat, townData?.lng)}> */}
-      <button onClick={() => findStreetCrimes(Date, townData?.lat, townData?.lng)}>
+      <button id="goBtn"
+        onClick={() => findStreetCrimes(Date, townData?.lat, townData?.lng)}
+      >
         Go
       </button>
 

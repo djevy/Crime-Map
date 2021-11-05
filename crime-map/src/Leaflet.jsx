@@ -7,8 +7,8 @@ import {
   useMapEvents,
 } from "react-leaflet";
 
-export const Leaflet = ({ LocationCrimeData, StreetCrimeData }) => {
-  const mapRef = React.createRef();
+export const Leaflet = ({ LocationCrimeData, StreetCrimeData, CrimeType }) => {
+  // const mapRef = React.createRef();
   const LocationMarker = () => {
     const [position, setPosition] = useState(null);
     const map = useMapEvents({
@@ -48,7 +48,6 @@ export const Leaflet = ({ LocationCrimeData, StreetCrimeData }) => {
   return (
     <div id="mymap">
       <MapContainer
-        ref={mapRef}
         center={[51.505, -0.09]}
         zoom={7}
         scrollWheelZoom={true}
@@ -59,7 +58,7 @@ export const Leaflet = ({ LocationCrimeData, StreetCrimeData }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {LocationCrimeData?.map((val, index) => {
-          //   HandleOnFlyTo([val.location.latitude, val.location.longitude]);
+          // setMapPosition([val.location.latitude, val.location.longitude]);
           return (
             <Marker position={[val.location.latitude, val.location.longitude]}>
               <Popup>
@@ -83,8 +82,11 @@ export const Leaflet = ({ LocationCrimeData, StreetCrimeData }) => {
             </Marker>
           );
         })}
-        {StreetCrimeData?.map((val, index) => {
-          //   HandleOnFlyTo([val.location.latitude, val.location.longitude]);
+        {StreetCrimeData?.filter((val) => val.category === CrimeType).map((val, index) => {
+          // if ((index = 1)) {
+          //   // setMapPosition([val.location.latitude, val.location.longitude]);
+          // }
+
           return (
             <Marker position={[val.location.latitude, val.location.longitude]}>
               <Popup>
