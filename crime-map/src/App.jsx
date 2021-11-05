@@ -16,6 +16,7 @@ function App() {
   const [CrimeTypeList, setCrimeTypeList] = useState()
   const [CrimeType, setCrimeType] = useState()
   const [Date, setDate] = useState();
+  const [CrimeCount, setCrimeCount] = useState();
 
   const findCrimes = async (date, lat, lng) => {
     try {
@@ -71,8 +72,9 @@ function App() {
           findCategories={findCategories}
           CrimeType={CrimeType}
           setCrimeType={setCrimeType}
+          CrimeCount={CrimeCount}
         ></Table>
-        <Leaflet LocationCrimeData={LocationCrimeData} StreetCrimeData={StreetCrimeData} CrimeType={CrimeType}></Leaflet>
+        <Leaflet LocationCrimeData={LocationCrimeData} StreetCrimeData={StreetCrimeData} CrimeType={CrimeType} setCrimeCount={setCrimeCount}></Leaflet>
       </div>
     </div>
   );

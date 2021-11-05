@@ -7,7 +7,7 @@ import {
   useMapEvents,
 } from "react-leaflet";
 
-export const Leaflet = ({ LocationCrimeData, StreetCrimeData, CrimeType }) => {
+export const Leaflet = ({ LocationCrimeData, StreetCrimeData, CrimeType, setCrimeCount }) => {
   // const mapRef = React.createRef();
   const LocationMarker = () => {
     const [position, setPosition] = useState(null);
@@ -86,6 +86,7 @@ export const Leaflet = ({ LocationCrimeData, StreetCrimeData, CrimeType }) => {
           // if ((index = 1)) {
           //   // setMapPosition([val.location.latitude, val.location.longitude]);
           // }
+          setCrimeCount(index + 1)
 
           return (
             <Marker position={[val.location.latitude, val.location.longitude]}>
