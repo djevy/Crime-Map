@@ -36,7 +36,7 @@ export const Leaflet = ({
     <div id="mymap">
       <MapContainer
         center={[51.505, -0.09]}
-        zoom={7}
+        zoom={6}
         scrollWheelZoom={true}
         id="mapstyle"
       >

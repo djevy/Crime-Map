@@ -60,9 +60,10 @@ label {
   border-radius: 10px;
   padding-left: 10px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  cursor: pointer;
 }
 #date {
-  width: calc(90% -  10px);
+  width: calc(90% - 10px);
 }
 #goBtn {
   width: 80px;
@@ -73,12 +74,13 @@ label {
   margin-top: 10px;
   margin-bottom: 20px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 #crimeInfo {
   border-top: #1b4080 solid 5px;
   width: 100%;
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: flex-start;
   margin: 15px;
@@ -87,6 +89,9 @@ label {
 
 .popupTitle {
   font-weight: bold;
+}
+#instructions {
+  display: none;
 }
 
 /* Map */
@@ -123,5 +128,11 @@ label {
     height: calc(100vh - 60px);
     grid-column: 1;
     grid-row: unset;
+  }
+  #crimeInfo {
+    display: flex;
+  }
+  #instructions{
+    display: block;
   }
 }

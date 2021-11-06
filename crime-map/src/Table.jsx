@@ -46,7 +46,7 @@ export const Table = ({
 
   return (
     <div id="table">
-      <h3>Find street level crime in towns and cities of the UK</h3>
+      <h3 id="instructions">Find street level crime in towns and cities of the UK</h3>
       <label htmlFor="towns">Location: </label>
       <select
         className={"dropdown"}
