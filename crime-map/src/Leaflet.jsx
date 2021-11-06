@@ -7,8 +7,12 @@ import {
   useMapEvents,
 } from "react-leaflet";
 
-export const Leaflet = ({ LocationCrimeData, StreetCrimeData, CrimeType, setCrimeCount }) => {
-  // const mapRef = React.createRef();
+export const Leaflet = ({
+  // LocationCrimeData,
+  StreetCrimeData,
+  CrimeType,
+  setCrimeCount,
+}) => {
   const LocationMarker = () => {
     const [position, setPosition] = useState(null);
     const map = useMapEvents({
@@ -28,23 +32,6 @@ export const Leaflet = ({ LocationCrimeData, StreetCrimeData, CrimeType, setCrim
     );
   };
 
-  //   function HandleOnFlyTo(latlng) {
-  //     const map = useMapEvents({
-  //       locationfound() {
-  //         map.flyTo(latlng, map.getZoom());
-  //       },
-  //     });
-
-  // map.flyTo([28.3852, -81.5639], 14, {
-  //   duration: 2
-  // });
-  // map.setView([28.3852, -81.5639], 14);
-  //   }
-  //   const FlyToCrime = (latlng) => {
-  //     const { current = {} } = mapRef;
-  //     const { leafletElement: map } = current;
-  //     map.flyTo([28.3852, -81.5639], map.getZoom());
-  //   };
   return (
     <div id="mymap">
       <MapContainer
@@ -57,7 +44,7 @@ export const Leaflet = ({ LocationCrimeData, StreetCrimeData, CrimeType, setCrim
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {LocationCrimeData?.map((val, index) => {
+        {/* {LocationCrimeData?.map((val, index) => {
           // setMapPosition([val.location.latitude, val.location.longitude]);
           return (
             <Marker position={[val.location.latitude, val.location.longitude]}>
@@ -81,36 +68,41 @@ export const Leaflet = ({ LocationCrimeData, StreetCrimeData, CrimeType, setCrim
               </Popup>
             </Marker>
           );
-        })}
-        {StreetCrimeData?.filter((val) => val.category === CrimeType).map((val, index) => {
-          // if ((index = 1)) {
-          //   // setMapPosition([val.location.latitude, val.location.longitude]);
-          // }
-          setCrimeCount(index + 1)
-
-          return (
-            <Marker position={[val.location.latitude, val.location.longitude]}>
-              <Popup>
-                <p>
-                  <span className="popupTitle">Crime category:</span>{" "}
-                  {val.category}
-                </p>
-                <p>
-                  <span className="popupTitle">Location:</span>{" "}
-                  {val.location.street.name}
-                </p>
-                <p>
-                  <span className="popupTitle">Outcome:</span>{" "}
-                  {val.outcome_status?.category}
-                </p>
-                <p>
-                  <span className="popupTitle">Date:</span>{" "}
-                  {val.outcome_status?.date}
-                </p>
-              </Popup>
-            </Marker>
-          );
-        })}
+        })} */}
+        {StreetCrimeData?.filter((val) => val.category === CrimeType).map(
+          (val, index) => {
+            setCrimeCount(index + 1);
+            console.log(val.robbery);
+            return (
+              <Marker
+                position={[val.location.latitude, val.location.longitude]}
+              >
+                <Popup>
+                  <p>
+                    <span className="popupTitle">Crime category:</span>{" "}
+                    {val.category}
+                  </p>
+                  <p>
+                    <span className="popupTitle">Location:</span>{" "}
+                    {val.location.street.name}
+                  </p>
+                  <p>
+                    <span className="popupTitle">Reported at:</span>{" "}
+                    {val?.location_subtype}
+                  </p>
+                  <p>
+                    <span className="popupTitle">Outcome:</span>{" "}
+                    {val.outcome_status?.category}
+                  </p>
+                  <p>
+                    <span className="popupTitle">Date:</span>{" "}
+                    {val.outcome_status?.date}
+                  </p>
+                </Popup>
+              </Marker>
+            );
+          }
+        )}
         <LocationMarker>
           <Popup>You are here!</Popup>
         </LocationMarker>

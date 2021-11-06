@@ -11,9 +11,6 @@
 h1 {
   margin: 0;
 }
-.example::-webkit-scrollbar {
-  display: none;
-}
 
 #pageTitle {
   height: 50px;
@@ -37,10 +34,14 @@ h1 {
   border: #1b4080 solid 5px;
   background-color: #74a6fd;
   overflow-y: scroll;
+  overflow-x: visible;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+#table::-webkit-scrollbar {
+  display: none;
 }
 label {
   margin-right: auto;
@@ -48,6 +49,7 @@ label {
   font-weight: bold;
   margin-left: 15px;
   font-size: 20px;
+  text-decoration: underline #1b4080;
 }
 .dropdown {
   width: 90%;
@@ -55,6 +57,12 @@ label {
   height: 30px;
   border: none;
   margin-bottom: 10px;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+#date {
+  width: calc(90% -  10px);
 }
 #goBtn {
   width: 80px;
@@ -100,7 +108,7 @@ label {
 @media only screen and (min-width: 426px) {
   #appContainer {
     display: grid;
-    grid-template-columns: 300px 3fr;
+    grid-template-columns: 350px 3fr;
     grid-template-rows: none;
     height: calc(100vh - 50px);
   }

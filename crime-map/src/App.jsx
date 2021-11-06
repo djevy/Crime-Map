@@ -46,12 +46,6 @@ function App() {
     }
   };
 
-  // function onlyUnique(value, index, self) {
-  //   return self.indexOf(value) === index;
-  // }
-
-  // const FilteredStreetCrimeData = StreetCrimeData?.filter(onlyUnique)
-
   return (
     <div className="App">
       <div id="pageTitle">
@@ -67,12 +61,12 @@ function App() {
           LocationCrimeData={LocationCrimeData}
           findStreetCrimes={findStreetCrimes}
           StreetCrimeData={StreetCrimeData}
-          // FilteredStreetCrimeData={FilteredStreetCrimeData}
           CrimeTypeList={CrimeTypeList}
           findCategories={findCategories}
           CrimeType={CrimeType}
           setCrimeType={setCrimeType}
           CrimeCount={CrimeCount}
+          setCrimeCount={setCrimeCount}
         ></Table>
         <Leaflet LocationCrimeData={LocationCrimeData} StreetCrimeData={StreetCrimeData} CrimeType={CrimeType} setCrimeCount={setCrimeCount}></Leaflet>
       </div>

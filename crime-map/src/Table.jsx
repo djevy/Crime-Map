@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DATA from "./Major Cities/gb.json";
 
 export const Table = ({
@@ -17,6 +17,7 @@ export const Table = ({
   findCategories,
   CrimeCount,
 }) => {
+  const [Search, setSearch] = useState(false);
   const handleChange = (value) => {
     const index = value.selectedIndex;
     const el = value.childNodes[index];
@@ -34,6 +35,7 @@ export const Table = ({
       lng: lng,
       city: city,
     });
+    setSearch(true);
 
     // findCrimes(Date, lat, lng);
     // findStreetCrimes(Date, lat, lng)
@@ -44,6 +46,7 @@ export const Table = ({
 
   return (
     <div id="table">
+      <h3>Find street level crime in towns and cities of the UK</h3>
       <label htmlFor="towns">Location: </label>
       <select
         className={"dropdown"}
@@ -51,7 +54,6 @@ export const Table = ({
         id="towns"
         onChange={(e) => {
           handleChange(e.target);
-          // console.log(e.target);
         }}
       >
         <option selected disabled>
@@ -79,6 +81,7 @@ export const Table = ({
         type="month"
         id="date"
         name="date"
+        min="2018-10"
         onChange={(e) => {
           console.log(e.target.value);
           setDate(e.target.value);
@@ -94,7 +97,6 @@ export const Table = ({
           const index = e.target.selectedIndex;
           const el = e.target.childNodes[index];
           const id = el.getAttribute("id");
-          // console.log(e.target);
           setCrimeType(id);
         }}
       >
@@ -118,32 +120,17 @@ export const Table = ({
         Go
       </button>
 
-      <div id="crimeInfo">
-        <h3>{townData?.city}</h3>
-        <p><b>Population :</b> {townData?.population}</p>
-        <p>
-          <b>Cases of {CrimeType} :</b> {CrimeCount}
-        </p>
-      </div>
-      {/* <p>{townData?.id}</p>
-      <p>{townData?.lat}</p>
-      <p>{townData?.lng}</p> */}
-
-      {/* <div id="crimeInfo">
-        <h3>General Information:</h3>
-        {StreetCrimeData?.map((val, index) => {
-          if (val.length === 0) {
-            return <p>No crime reported</p>;
-          } else {
-            return (
-              <div id={index} key={index}>
-                <p>Crime category: {val.category}</p>
-                <p>Location: {val.location.street.name}</p>
-              </div>
-            );
-          }
-        })}
-      </div> */}
+      {Search && (
+        <div id="crimeInfo">
+          <h3>{townData?.city}</h3>
+          <p>
+            <b>Population :</b> {townData?.population}
+          </p>
+          <p>
+            <b>Cases of {CrimeType} :</b> {CrimeCount}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
